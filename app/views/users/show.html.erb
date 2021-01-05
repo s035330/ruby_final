@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-content">
+    <p>
+      Naudotojo vardas:
+      <b><%= @user.username %></b>
+    </p>
+    <p>
+      Naudotojo grupe:
+      <b><%= @user.user_group.name %></b>
+    </p>
+  </div>
+  <div class="card-action">
+    <%= link_to 'Redaguoti', edit_user_path(@user) %>
+    <%= link_to 'Atgal', users_path %>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Receptas: <b><%= @recipe.title %></b></span>
+    <p><%= @recipe.content %>
+    <hr>
+    Sukūrė: <b><%= @recipe.user.username %></b></p>
+  </div>
+  <div class="card-action">
+    <%= link_to 'Atgal', recipes_path %>
+    <%= 
+      if current_user && @recipe.user_id == current_user.id
+        link_to 'Redaguoti', edit_recipe_path(@recipe) 
+      end
+    %>
+  </div>
+</div>

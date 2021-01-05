@@ -1,0 +1,27 @@
+<br>
+<%= if current_user then link_to 'Sukurti naują receptą', new_recipe_path, class: 'waves-effect waves-light btn' end %>
+
+<ul class="collection with-header">
+  <li class="collection-header"><h4>Receptai</h4></li>
+
+  <% @recipes.each do |recipe| %>
+    <li class="collection-item">
+      <div>
+        <%= link_to recipe.title, recipe, class: '' %>
+        <%= 
+            link_to '<i class="material-icons">send</i>'.html_safe, recipe, class: 'secondary-content' 
+        %>
+        <%= 
+          if current_user && recipe.user_id == current_user.id
+            link_to '<i class="material-icons">create</i>'.html_safe, edit_recipe_path(recipe), class: 'secondary-content' 
+          end
+        %>
+        <%= 
+          if current_user && recipe.user_id == current_user.id
+            link_to '<i class="material-icons">delete</i>'.html_safe, recipe, method: :delete, data: { confirm: 'Ar tikrai ištrinti?' }, class: 'secondary-content' 
+          end
+        %>
+      </div>
+    </li>
+  <% end %>
+</ul>

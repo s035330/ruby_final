@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RubyFinal</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav>
+        <div class="nav-wrapper">
+          <%= link_to 'Receptai', recipes_path, class: 'brand-logo' %>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <% if current_user %>
+              <li><%= link_to current_user.username, current_user %></b></li>
+              <li><%= link_to 'Atsijungti', logout_path %></li>
+              <% if current_user.user_group.name == "Administratorius" %>
+                <li><%= link_to 'Naudotojai', users_path %></li>
+              <% end %>
+            <% else %>
+              <li><%= link_to 'Registruotis', signup_path %></li>
+              <li><%= link_to 'Prisijungti', login_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+      <% if notice %>
+        <div class="card cyan darken-1">
+          <div class="card-content white-text">
+            <p><%= notice %></p>
+          </div>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
